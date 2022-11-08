@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS App</title>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <style>
+    body{
+      background-color: rgba(0, 0, 0, 0.767);
+      color: rgba(255, 255, 255, 0.74);
+    }
+  </style>
+
+  <body>
+    <div id="app">
+      <h1>Apprentissage de vue JS</h1>
+      <!-- Envoyer des données de la vue vers le code JS (v-model - modification en temps réel) -->
+      <input type="text" v-model="message">
+      <a href="#" @click="addTodo">Ajouter</a>
+
+      <p v-for="todo in todos" :key="todo.id" @click="inverser">{{todo.id}} {{todo.tache}}</p>
+    </div>
+    <!-- <script type="module" src="/src/main.ts"></script> -->
+
+    <script>
+      const app = Vue.createApp({
+        data(){
+          return{
+            message: "Test vue js",
+            todos: [
+              {id: 0, tache: "Faire à manger"},
+              {id: 1, tache: "Manger"},
+              {id: 2, tache: "Faire la vaisselle"},
+              {id: 3, tache: "Travailler"},
+              {id: 4, tache: "Jouer"}
+            ]
+          }
+        },
+        methods:{
+          inverser(){
+            this.todos.reverse();
+          },
+          addTodo(){
+            let id = this.todos.length;
+            this.todos.push({id: id, tache: this.message});
+          }
+        }
+      }).mount('#app');
+    </script>
+  </body>
+</html>
