@@ -14,6 +14,9 @@
       background-color: rgba(0, 0, 0, 0.767);
       color: rgba(255, 255, 255, 0.74);
     }
+    a{
+      color: rgba(255, 255, 255, 0.74);;
+    }
   </style>
 
   <body>
@@ -21,7 +24,7 @@
       <h1>Apprentissage de vue JS</h1>
       <!-- Envoyer des données de la vue vers le code JS (v-model - modification en temps réel) -->
       <input type="text" v-model="message">
-      <a href="#" @click="addTodo">Ajouter</a>
+      <a href="#" v-if="message != ''" @click="addTodo">Ajouter</a>
 
       <p v-for="todo in todos" :key="todo.id" @click="inverser">{{todo.id}} {{todo.tache}}</p>
     </div>
@@ -48,6 +51,7 @@
           addTodo(){
             let id = this.todos.length;
             this.todos.push({id: id, tache: this.message});
+            this.message = '';
           }
         }
       }).mount('#app');
